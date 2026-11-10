@@ -418,47 +418,47 @@
   <article class="project-card">
     <div class="card-header">
       <div>
-        <div class="card-title">1. Produkcyjne Pipeline'y n8n (Integracje API, Webhooki & JSON)</div>
+        <div class="card-title">1. Produkcyjny Potok Danych i Integracji Wielosystemowej (n8n: Scenariusz #2 Analityk)</div>
       </div>
-      <div class="card-tag">Orkiestracja & API</div>
+      <div class="card-tag">REST API • PostgreSQL • Google Sheets</div>
     </div>
 
     <div class="metrics-row">
       <div class="metric-item">
-        <div class="val">6 Scenariuszy</div>
-        <div class="lbl">Architektura potoków</div>
+        <div class="val">37 Węzłów</div>
+        <div class="lbl">Logika scenariusza #2</div>
       </div>
       <div class="metric-item">
-        <div class="val">>100 Węzłów</div>
-        <div class="lbl">Logika biznesowa</div>
+        <div class="val">HTTP 202</div>
+        <div class="lbl">Asynchroniczny ACK</div>
       </div>
       <div class="metric-item">
-        <div class="val">ACK 202</div>
-        <div class="lbl">Asynchroniczne Webhooki</div>
+        <div class="val">PostgreSQL</div>
+        <div class="lbl">Deduplikacja & UPSERT</div>
       </div>
       <div class="metric-item">
-        <div class="val">0 Przestojów</div>
-        <div class="lbl">Centralny Error Trigger</div>
+        <div class="val">Multi-Sink</div>
+        <div class="lbl">Sheets, PG & Telegram</div>
       </div>
     </div>
 
     <div class="details-grid">
       <div class="detail-point">
         <strong>Wyzwanie:</strong>
-        <span>Ręczne pobieranie, filtrowanie i transformowanie rekordów między rozproszonymi serwisami API, brak telemetrii i ryzyko pominięcia krytycznych błędów integracji.</span>
+        <span>Pobieranie i transformowanie danych z zewnętrznych serwisów REST API, wymóg autoryzacji przychodzących webhooków, deduplikacja rekordów w bazie SQL oraz równoległe zasilanie arkuszy kalkulacyjnych i kanałów komunikacji.</span>
       </div>
       <div class="detail-point">
         <strong>Rozwiązanie:</strong>
-        <span>Zaprojektowałem ekosystem 6 scenariuszy w n8n: asynchroniczne przyjmowanie webhooków z natychmiastowym potwierdzeniem odbioru (ACK), węzły decyzyjne (IF/Switch), transformacja struktur JSON w JavaScript (Code Node), synchronizacja z Google Sheets oraz dedykowany globalny obieg wychwytywania błędów z natychmiastowym alertowaniem na Telegramie.</span>
+        <span>Zaprojektowałem i wdrożyłem 37-węzłowy potok danych (widoczny na zrzucie ekranu): bramka autoryzacji (Auth OK? z kodem 401), natychmiastowa asynchroniczna odpowiedź ACK 202, zapytania HTTP Request z paginacją, węzły normalizacji struktur JSON w JavaScript (Code Node), deduplikacja rekordów z operacją UPSERT w PostgreSQL, równoległa telemetria w Google Sheets oraz formatowanie wiadomości i wysyłka przez bota Telegram. Potok stanowi centralny komponent 6-scenariuszowego ekosystemu współpracującego z monitorującym Error Handlerem (#3) i Healthcheckiem (#5).</span>
       </div>
       <div class="detail-point">
         <strong>Rezultat:</strong>
-        <span>Pełna automatyzacja obiegu danych 24/7, zero utraconych transakcji oraz natychmiastowy czas powiadomienia o incydentach sieciowych.</span>
+        <span>Czyste, znormalizowane dane bez duplikatów w bazie PostgreSQL, zautomatyzowane raportowanie w Google Sheets i Telegramie oraz zerowy wpływ opóźnień zewnętrznych API na stabilność systemu.</span>
       </div>
     </div>
 
     <div class="media-box">
-      <img src="assets/n8n_workflow_showcase.png" alt="Wizualizacja Pipeline n8n (Węzły decyzyjne, arkusze i alerty)">
+      <img src="assets/n8n_workflow_showcase.png" alt="Wizualizacja Pipeline n8n Workflow #2 Analityk (37 węzłów: Webhook, ACK, PostgreSQL, Google Sheets, Telegram)">
     </div>
   </article>
 
